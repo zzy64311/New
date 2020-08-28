@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.mapper.CheckreportImagesMapper">
+  <resultMap id="BaseResultMap" type="com.api.pojo.CheckreportImages">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CHECK_ID" jdbcType="INTEGER" property="checkId" />
+    <result column="IMAGE_URI" jdbcType="VARCHAR" property="imageUri" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="VARCHAR" property="modifyTime" />
+    <result column="REPORT_INCOME_ID" jdbcType="INTEGER" property="reportIncomeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CHECK_ID, IMAGE_URI, CREATOR, CREATE_TIME, MODIFY_TIME, REPORT_INCOME_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_checkreport_images
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectCheckreportImages" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_checkreport_images
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_checkreport_images
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.api.pojo.CheckreportImages">
+    insert into t_checkreport_images (ID, CHECK_ID, IMAGE_URI, 
+      CREATOR, CREATE_TIME, MODIFY_TIME, 
+      REPORT_INCOME_ID)
+    values (#{id,jdbcType=INTEGER}, #{checkId,jdbcType=INTEGER}, #{imageUri,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{modifyTime,jdbcType=VARCHAR}, 
+      #{reportIncomeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.api.pojo.CheckreportImages">
+    insert into t_checkreport_images
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="checkId != null">
+        CHECK_ID,
+      </if>
+      <if test="imageUri != null">
+        IMAGE_URI,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="reportIncomeId != null">
+        REPORT_INCOME_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="checkId != null">
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="imageUri != null">
+        #{imageUri,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reportIncomeId != null">
+        #{reportIncomeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.api.pojo.CheckreportImages">
+    update t_checkreport_images
+    <set>
+      <if test="checkId != null">
+        CHECK_ID = #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="imageUri != null">
+        IMAGE_URI = #{imageUri,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reportIncomeId != null">
+        REPORT_INCOME_ID = #{reportIncomeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.api.pojo.CheckreportImages">
+    update t_checkreport_images
+    set CHECK_ID = #{checkId,jdbcType=INTEGER},
+      IMAGE_URI = #{imageUri,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=VARCHAR},
+      REPORT_INCOME_ID = #{reportIncomeId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
